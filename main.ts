@@ -143,7 +143,6 @@ for (const id of readdirSync(INPUT_DIR).sort()) {
   const result = execute(program, input);
   const dir = join(OUTPUT_DIR, id);
   mkdirSync(dir, {recursive: true});
-  // Clear only the contents of the output directory, never the dir itself.
   for (const name of readdirSync(dir)) rmSync(join(dir, name), {force: true, recursive: true});
   writeFileSync(join(dir, 'stdout.bin'), result.bytes);
   writeFileSync(join(dir, 'exit.txt'), `${result.code}\n`);
